@@ -101,9 +101,8 @@ lang/
 ```php
 <?php
 return [
-    'welcome' => 'Добро пожаловать в Webfeather',
-    'login' => 'Вход',
-    'logout' => 'Выход',
+    'modules_not_found'=>'Модули не найдены',
+    'welcome_title' => 'Добро пожаловать в Webfeather',
     // другие ключи и переводы
 ];
 ```
