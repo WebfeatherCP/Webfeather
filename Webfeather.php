@@ -1,7 +1,7 @@
 <?php
 $LOGIN_ENABLED = true;
 $valid_users = [
-    '{{USER}}' => '{{PASS}}',
+    'DefaultUser' => 'DefaultPasswd',
 ];
 if ($LOGIN_ENABLED && (
     !isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])
@@ -35,8 +35,13 @@ if (!$active && isset($modules['main'])) {
     exit;
 }
 ?>
+
+<?php
+$lang = include __DIR__ . '/lang/ru.php';
+?>
+
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -74,16 +79,15 @@ if (!$active && isset($modules['main'])) {
                 <a href="?<?= urlencode($key) ?>"><?= htmlspecialchars($mod['name']) ?></a>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>Модули не найдены</p>
+            <p><?= $lang['modules_not_found'] ?></p>
         <?php endif; ?>
     </aside>
     <main>
         <?php if ($active): ?>
             <?php $active['render'](); ?>
         <?php else: ?>
-            <h2>Добро пожаловать в Webfeather</h2>
-            <p>Webfeather - простая но продвинутая панель управления, с упором на максимально модульную архитектуру.</p>
-            <p>Чтобы начать, выберите модуль из меню.</p>
+            <h2><?= $lang['welcome_title'] ?></h2>
+            <p><?= $lang['welcome_desc'] ?></p>
         <?php endif; ?>
     </main>
     <nav x-show="screen <= 700" style="display: none;">
