@@ -2,9 +2,7 @@
 $module = [
     'route' => 'MyFirstModule',
     'name' => 'Мой первый модуль',
-    'render' => function () {
-        renderModuleContents();
-    }
+    'render' => 'renderModuleContents'
 ];
 
 function renderModuleContents() {
