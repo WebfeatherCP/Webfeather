@@ -45,11 +45,6 @@ if (!$active && isset($modules['main'])) {
 // ============================================
 $lang = include __DIR__ . '/lang/'.$LANG.'.php';
 
-// ============================================
-// MOBILE MENU STATE
-// ============================================
-$isMobile = isset($_SERVER['HTTP_USER_AGENT']) && 
-    preg_match('/Mobile|Android|iPhone/i', $_SERVER['HTTP_USER_AGENT']);
 ?>
 <!DOCTYPE html>
 <?php echo "<html lang=".$LANG.">" ;?>
