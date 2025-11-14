@@ -2,7 +2,7 @@
 // ============================================
 // AUTHENTICATION
 // ============================================
-$LOGIN_ENABLED = true;
+$LOGIN_ENABLED = false;
 $LANG = 'ru';
 $valid_users = ['DefaultUser' => 'DefaultPasswd'];
 
@@ -108,6 +108,16 @@ $isMobile = isset($_SERVER['HTTP_USER_AGENT']) &&
         nav {
             display: none;
         }
+
+        nav button {
+            font-size: 24px;
+        }
+
+        aside h2 {
+            margin-top:15px;
+            font-size:14px;
+            color:#bbb;
+        }
         
         /* Mobile */
         @media (max-width: 700px) {
@@ -146,7 +156,7 @@ $isMobile = isset($_SERVER['HTTP_USER_AGENT']) &&
                 background: transparent;
                 border: none;
                 color: #fff;
-                font-size: 16px;
+                /* font-size: 16px; */
                 cursor: pointer;
             }
             
@@ -163,13 +173,24 @@ $isMobile = isset($_SERVER['HTTP_USER_AGENT']) &&
 <body>
     <aside id="menu">
         <h1>Webfeather v1</h1>
-        <?php if ($modules): ?>
-            <?php foreach ($modules as $key => $mod): ?>
+       <?php
+        $groups = [];
+        foreach ($modules as $k => $m) {
+            if (!isset($m['show']) || $m['show']()) {
+                $g = $m['group'] ?? 'Other';
+                $groups[$g][$k] = $m;
+            }
+        }
+        ?>
+
+        <?php foreach ($groups as $gname => $mods): ?>
+            <h2>
+                <?= htmlspecialchars($gname) ?>
+            </h2>
+            <?php foreach ($mods as $key => $mod): ?>
                 <a href="?<?= urlencode($key) ?>"><?= htmlspecialchars($mod['name']) ?></a>
             <?php endforeach; ?>
-        <?php else: ?>
-            <p><?= htmlspecialchars($lang['modules_not_found']) ?></p>
-        <?php endif; ?>
+        <?php endforeach; ?>
     </aside>
     
     <main>
@@ -182,7 +203,7 @@ $isMobile = isset($_SERVER['HTTP_USER_AGENT']) &&
     </main>
     
     <nav>
-        <button onclick="history.back()">←</button>
+        <button onclick="history.back()">⇦</button>
         <?php if (isset($modules['main'])): ?>
             <button onclick="location.href='?main'">⌂</button>
         <?php endif; ?>
