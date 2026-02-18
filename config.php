@@ -8,7 +8,7 @@
 // ============================================
 
 // Branding
-$WF_TITLE   = 'Webfeather';
+$WF_TITLE   = 'Webfeather ' . $WF_VERSION;
 
 // Authentication
 // Set to true to enable HTTP Basic Auth

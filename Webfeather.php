@@ -8,8 +8,8 @@
 // ============================================
 
 // CONFIGURATION
-require_once __DIR__ . '/config.php';
 $WF_VERSION = 'v2';
+require_once __DIR__ . '/config.php';
 
 // AUTHENTICATION (HTTP Basic — kept for "just works" use cases)
 if ($LOGIN_ENABLED && (
@@ -55,7 +55,7 @@ foreach ($modules as $k => $m) {
 // PAGE TITLE
 $pageTitle = $active
     ? htmlspecialchars($active['name']) . ' — ' . htmlspecialchars($WF_TITLE)
-    : htmlspecialchars($WF_TITLE . ' ' . $WF_VERSION);
+    : htmlspecialchars($WF_TITLE);
 
 ?>
 <!DOCTYPE html>
@@ -208,7 +208,7 @@ $pageTitle = $active
 
     <div id="wf-sidebar">
         <div id="wf-sidebar-header">
-            <?= htmlspecialchars($WF_TITLE . ' ' . $WF_VERSION) ?>
+            <?= htmlspecialchars($WF_TITLE) ?>
         </div>
         <nav id="wf-sidebar-nav" aria-label="Modules">
             <?php foreach ($groups as $gname => $mods): ?>
